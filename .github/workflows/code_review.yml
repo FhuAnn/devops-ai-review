@@ -16,17 +16,15 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: "3.9"
-          cache: pip # Cải thiện tốc độ cài đặt package
+          cache: pip
 
       - name: Install dependencies
-        run: if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        run: |
+          pip install --upgrade pip && pip install google-generativeai
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip list  # Kiểm tra thư viện đã cài đặt
 
       - name: Run AI Code Review
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: |
-          pip install --upgrade pip
-           pip install google-generativeai
-           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-           pip list
-           python review-script.py
+        run: python review.py # Gọi script để review code
