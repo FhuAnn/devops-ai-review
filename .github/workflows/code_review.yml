@@ -25,5 +25,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          set -e  # Dừng script nếu có lỗi
-          python .github/review_script.py
+          pip install --upgrade pip
+           pip install google-generativeai
+           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+           pip list
