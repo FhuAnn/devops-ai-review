@@ -1,24 +1,20 @@
-import openai
+import google.generativeai as genai
 import os
 
-# Lấy API key từ GitHub Secrets
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# Nhập API key từ biến môi trường
+API_KEY = os.getenv("GEMINI_API_KEY")  # Lấy API key từ môi trường
+if not API_KEY:
+    raise ValueError("API key không hợp lệ. Hãy kiểm tra lại GEMINI_API_KEY.")
 
-def review_code(code):
-    response = openai.ChatCompletion.create(
-        model="gpt-4-turbo",
-        messages=[
-            {"role": "system", "content": "Bạn là chuyên gia code review."},
-            {"role": "user", "content": f"Hãy kiểm tra code này và đưa ra nhận xét: {code}"}
-        ]
-    )
-    return response["choices"][0]["message"]["content"]
+genai.configure(api_key=API_KEY)
 
-# Ví dụ review code
-code_sample = """
-def add(a, b):
-return a + b  # Lỗi thụt lề
-"""
+# Hàm gọi Gemini
+def review_code(code_sample):
+    model = genai.GenerativeModel("gemini-pro")  # Hoặc "gemini-1.5-pro" nếu có quyền
+    response = model.generate_content(f"Review code sau:\n{code_sample}")
+    return response.text
 
-review_result = review_code(code_sample)
-print("🔍 AI Code Review Result:\n", review_result)
+# Test thử
+if __name__ == "__main__":
+    code_sample = "def hello():\n    print('Hello, world!')"
+    print(review_code(code_sample))

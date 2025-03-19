@@ -8,7 +8,6 @@ on:
 jobs:
   review:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -16,11 +15,16 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: '3.9'
+          python-version: "3.9"
+          cache: pip
 
       - name: Install dependencies
-        run: pip install openai requests
+        run: |
+          pip install --upgrade pip && pip install google-generativeai
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip list  # Kiểm tra thư viện đã cài đặt
 
       - name: Run AI Code Review
-        run: python .github/review_script.py
-
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python .github/review_script.py # Gọi script để review code
