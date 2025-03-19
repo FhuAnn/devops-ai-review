@@ -27,4 +27,4 @@ jobs:
       - name: Run AI Code Review
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python review.py # Gọi script để review code
+        run: python .github/review_script.py # Gọi script để review code
