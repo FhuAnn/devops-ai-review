@@ -7,7 +7,7 @@ client = OpenAI(api_key=OPENAI_API_KEY)  # Khởi tạo client
 
 def review_code(code):
     response = client.chat.completions.create(
-        model="gpt-4-turbo",
+        model="gpt-4",
         messages=[
             {"role": "system", "content": "Bạn là chuyên gia code review."},
             {"role": "user", "content": f"Hãy kiểm tra code này và đưa ra nhận xét: {code}"}
