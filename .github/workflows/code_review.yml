@@ -19,7 +19,7 @@ jobs:
           cache: pip # Cải thiện tốc độ cài đặt package
 
       - name: Install dependencies
-        run: pip install --upgrade google-generativeai
+        run: if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Run AI Code Review
         env:
