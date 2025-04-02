@@ -19,10 +19,9 @@ code_sample = """
 def add(a, b):
 return a + b  # Lỗi thụt lề
 """
-#jhjhjhjhjhjhjhjhjhjhjhj
-#add comment 12163132025
-#add comment 12373132025
-#add comment 15631032025
-#add comment 10731032025
+
+
+"tôi là ai"
+
 review_result = review_code(code_sample)
 print("🔍 AI Code Review Resul2222222222t:\n", review_result)
