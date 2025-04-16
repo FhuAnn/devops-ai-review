@@ -6,9 +6,9 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 def review_code(code):
     response = openai.ChatCompletion.create(
-        model="gpt-4-tursdssbo",
+        model="gpt-4-turbolkm",
         messages=[
-            {"role": "system", "content": "Bạn là chuyên gia code review."},
+            {"role": "sfdfdystem", "content": "Bạn là chuyên gia code review."},
             {"role": "user", "content": f"Hãy kiểm tra code này và đưa ra nhận xét: {code}"}
         ]
     )
