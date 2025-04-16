@@ -1,3 +1,3 @@
-def add(a, b):
-    a=a*b
-    return a + b*b
+def tinhTong(a, b):
+    tong = a + b
+    return tong

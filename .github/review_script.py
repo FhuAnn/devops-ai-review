@@ -14,14 +14,6 @@ def review_code(code):
     )
     return response["choices"][0]["message"]["content"]
 
-# Ví dụ review code
-code_sample = """
-def add(a, b):
-return a + b  # Lỗi thụt lề
-"""
-
-
-"tôi là ai"
 
 review_result = review_code(code_sample)
 print("🔍 AI Code Review Resul2222222222t:\n", review_result)
