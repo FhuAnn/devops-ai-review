@@ -11,14 +11,14 @@ auto_label:
   enabled: true
   ai_model: grok
   issue:
-    enabled: false
+    enabled: true
     labels:
       - bug
       - feature-request
       - question
       - urgent
   pull_request:
-    enabled: true
+    enabled: false
     labels:
       - fix
       - enhancement
